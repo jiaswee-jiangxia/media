@@ -35,18 +35,20 @@ var upload = multer({
     fileFilter: function (req, file, cb){
 
         // Set the filetypes, it is optional
-        var filetypes = /jpeg|jpg|png/;
-        var mimetype = filetypes.test(file.mimetype);
+        // var filetypes = /jpeg|jpg|png/;
+        // var mimetype = filetypes.test(file.mimetype);
+        //
+        // var extname = filetypes.test(path.extname(
+        //     file.originalname).toLowerCase());
+        //
+        // if (mimetype && extname) {
+        //     return cb(null, true);
+        // }
 
-        var extname = filetypes.test(path.extname(
-            file.originalname).toLowerCase());
+        return cb(null, true);
 
-        if (mimetype && extname) {
-            return cb(null, true);
-        }
-
-        cb("Error: File upload only supports the "
-            + "following filetypes - " + filetypes);
+        // cb("Error: File upload only supports the "
+        //     + "following filetypes - " + filetypes);
     }
 
 // mypic is the name of file attribute

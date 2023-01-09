@@ -67,6 +67,7 @@ app.post("/media/upload",function (req, res, next) {
             // ERROR occurred (here it can be occurred due
             // to uploading image of size greater than
             // 1MB or uploading different file type)
+            console.log(err)
             res.send({status: 400, path: ""})
         }
         else {

@@ -10,14 +10,18 @@ app.set("view engine","ejs")
 // var upload = multer({ dest: "Upload_folder_name" })
 // If you do not want to use diskStorage then uncomment it
 
+var fileLocation = "";
+var fileName = "";
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
 
         // Uploads is the Upload_folder_name
-        cb(null, "uploads")
+        fileLocation = "uploads";
+        cb(null, fileLocation)
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + "-" + Date.now()+".jpg")
+        fileName = file.fieldname + "-" + Date.now()+".jpg";
+        cb(null, fileName)
     }
 })
 
@@ -52,7 +56,7 @@ app.get("/",function(req,res){
     res.render("Signup");
 })
 
-app.post("/uploadProfilePicture",function (req, res, next) {
+app.post("/media/upload",function (req, res, next) {
 
     // Error MiddleWare for multer file upload, so if any
     // error occurs, the image would not be uploaded!
@@ -66,9 +70,8 @@ app.post("/uploadProfilePicture",function (req, res, next) {
             res.send(err)
         }
         else {
-
             // SUCCESS, image successfully uploaded
-            res.send("Success, Image uploaded!")
+            res.send({status: 200, path: fileLocation + "/" + fileName})
         }
     })
 })

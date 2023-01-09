@@ -80,5 +80,5 @@ app.post("/media/upload",function (req, res, next) {
 // is not taken by any other process
 app.listen(30888,function(error) {
     if(error) throw error
-    console.log("Server created Successfully on PORT 8080")
+    console.log("Server created Successfully on PORT 30888")
 })
